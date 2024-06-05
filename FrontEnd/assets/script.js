@@ -47,8 +47,7 @@ const getCategories = ()	=> fetch ('http://localhost:5678/api/works')
 
 // Création des filtres par catégories en fonction des date en  paramètre
 
-const createCatgories = data = {
-
+const createCatgories = data => {
 	data.forEach(item =>{
 
 		const button = document.createElement('button')
