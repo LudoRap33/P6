@@ -84,7 +84,7 @@ categoryAll.addEventListener('click', () => {
 
 
 
-fetch('https://jsonplaceholder.typicode.com/posts?_limit=10',{
+fetch('http://localhost:5678/api/categories',{
     headers: {
         Accept: 'application/json'
     }
@@ -103,7 +103,7 @@ fetch('https://jsonplaceholder.typicode.com/posts?_limit=10',{
         console.error('Une erreur est survenue', e)
     })
 
-	
 
+	
 getWorks()
 getCategories()
