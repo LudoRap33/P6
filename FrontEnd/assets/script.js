@@ -83,6 +83,7 @@ categoryAll.addEventListener('click', () => {
 })
 
 
+//LOGIN ET PASS WORDL
 
 fetch('http://localhost:5678/api/categories',{
     headers: {
@@ -104,6 +105,6 @@ fetch('http://localhost:5678/api/categories',{
     })
 
 
-	
+
 getWorks()
 getCategories()
