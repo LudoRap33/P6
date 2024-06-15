@@ -15,6 +15,12 @@
 </head>
 
 <body>
+	<div class="banner">
+		<button class="button">
+			<img src="./assets/icons/edit.png" alt="bouton édition" />
+			<span>Mode édition</span>
+		</button>
+	</div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -43,7 +49,13 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
+			<h2>
+				Mes Projets
+				<button id="edit-modal" class="button">
+					<img src="./assets/icons/edit.svg" alt="bouton édition" />
+					<span>Mode édition</span>
+				</button>
+			</h2>
 			<div id="filter">
 				<button id="category-all" class="category-active">Tous</button>
 			</div>
@@ -73,7 +85,7 @@
 		</nav>
 	</footer>
 	<script src="./assets/script.js"></script>
-	
+
 </body>
 
 </html>

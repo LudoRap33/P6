@@ -306,7 +306,79 @@ li:hover {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"] {
+footer nav ul {
+	display: flex;
+	justify-content: flex-end;
+	margin: 2em
+}
+
+/*** Login ***/
+
+#login-error,
+.input-error {
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
+	display: flex;
+	justify-content: center;
+}
+
+#email-error,
+#password-error,
+#title-error,
+#select-error,
+#file-error {
+	display: none;
+}
+
+#login h2 {
+	text-align: center;
+}
+
+#login form {
+	margin: auto;
+	width: 50%;
+}
+
+.form h2 {
+	margin-bottom: 20px;
+}
+
+.form form {
+	text-align: left;
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+.form input,
+.form select,
+.form select option {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	padding-left: 20px;
+	padding-right: 20px;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16.42px;
+	color: #444444;
+}
+
+.form label {
+	margin: 2em 0 1em 0;
+}
+
+.form textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+input[type="submit"],
+#btn-add-picture {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -315,10 +387,55 @@ input[type="submit"] {
 	width: 180px;
 	text-align: center;
 	border-radius: 60px;
+	cursor: pointer;
 }
 
-footer nav ul {
+.forgot-password {
 	display: flex;
-	justify-content: flex-end;
-	margin: 2em
+	justify-content: center;
+}
+
+/*** mode Admin ***/
+#edit-modal {
+	display: none;
+}
+
+.banner {
+	width: 100%;
+	background-color: black;
+	height: 59px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 1;
+}
+
+.button {
+	background-color: transparent;
+	border: none;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+button span {
+	padding-left: 10px;
+}
+
+#portfolio h2 {
+	display: flex;
+	justify-content: center;
+}
+
+#portfolio button {
+	margin-left: 20px;
+}
+
+#portfolio span {
+	color: black;
 }

@@ -1,6 +1,9 @@
 const gallery = document.querySelector('.gallery')
 const filter = document.getElementById('filter')
 const categoryAll = document.getElementById('category-all')
+const banner = document.querySelector('.banner')
+const header = document.querySelector('header')
+const editModal = document.getElementById('edit-modal')
 
 // Récupération des travaux de la bdd grâce à l'API Fetch en fonction de l'id de la categorie en paramètre
 const getWorks = id => fetch('http://localhost:5678/api/works')
@@ -82,29 +85,35 @@ categoryAll.addEventListener('click', () => {
 	getWorks()
 })
 
+/*** Mode Admin ***/
+if (localStorage.token) {
+	banner.style.display = 'flex'
+	header.style.marginTop = '79px'
+	filter.style.display = 'none'
+	editModal.style.display = 'flex'
+	gallery.style.marginTop = '60px'
+}
 
-//LOGIN ET PASS WORDL
+let modat = null 
+const focusableSelector = 'button, a, input textarea'
+let focusables = []
+let previouslyFocusedElement = null
 
-fetch('http://localhost:5678/api/categories',{
-    headers: {
-        Accept: 'application/json'
-    }
-})
-    .then(r => {
-        if (r.ok) {
-            return r.json()
-        } else {
-            throw new Error('Erreur serveur', {cause: r})
-        }
-    })
-    .then(posts => {
-        console.log('La liste des articles : ', posts)
-    })
-    .catch(e => {
-        console.error('Une erreur est survenue', e)
-    })
-
-
+const openModal = function (e) {
+	e.preventDefault()
+	const target = e.target.getAttribute('href')
+	if (target.startsWith())
+	modal = document.querySelector()
+	focusables = Array.from(modal.querySelectorAll(focusableSelector))
+	previouslyFocusedElement = document.querySelector(':focus')
+	modal.style.display = null
+	focusables[0].focus()
+	modal.removeAttribute('aria-hidden')
+	modal.setAttribute('aria-modal', 'true')
+	modal.addEventListener('click', closedModal)
+	modal.querySelector('.js-modal-close'). addEventListener('click','close')
+	modal.querySelector('.js-modal-stop').addEventListener('click', 'stop')
+}
 
 getWorks()
 getCategories()
