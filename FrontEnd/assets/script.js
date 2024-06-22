@@ -4,6 +4,9 @@ const categoryAll = document.getElementById('category-all')
 const banner = document.querySelector('.banner')
 const header = document.querySelector('header')
 const editModal = document.getElementById('edit-modal')
+const modal = document.getElementById('modal')
+const galleryModal = document.querySelector('#modal .gallery')
+const modalBtnClose = document.getElementById('modal-btn-close')
 
 // Récupération des travaux de la bdd grâce à l'API Fetch en fonction de l'id de la categorie en paramètre
 const getWorks = id => fetch('http://localhost:5678/api/works')
@@ -15,17 +18,19 @@ const getWorks = id => fetch('http://localhost:5678/api/works')
 		console.log(JSON.stringify(filteredData, null, 2))
 
 
-		// creation de la galerie
+		// creation des galeries
 		createGallery(filteredData)
 	})
 	.catch(error => console.error(error))
 
-// Creation de la gallerie en fonction des data en paramètre
+// Creation des galeries de la page d'accueil et de la modal en fonction des data en paramètre
 const createGallery = data => {
 	gallery.innerHTML = ''
+	galleryModal.innerHTML = ''
 
 	data.forEach(item => {
 
+		// Création du DOM pour la galerie de la page d'accueil
 		const figure = document.createElement('figure')
 
 		const image = document.createElement('img')
@@ -39,6 +44,27 @@ const createGallery = data => {
 		figure.appendChild(figCation)
 
 		gallery.appendChild(figure)
+
+
+		// Création du DOM pour la galerie de la modal
+		const figureModal = document.createElement('figure')
+
+		const imageModal = document.createElement('img')
+		imageModal.src = item.imageUrl
+		imageModal.alt = item.title
+
+		figureModal.appendChild(imageModal)
+
+		// ajout dynamique de l'icon de la poubelle
+		const garbageIcon = document.createElement('img')
+		garbageIcon.alt = 'garbage icon'
+		garbageIcon.src = './assets/icons/garbage.png'
+		garbageIcon.setAttribute('class', 'icon garbage-icon')
+		figureModal.appendChild(garbageIcon)
+
+
+
+		galleryModal.appendChild(figureModal)
 
 	});
 	console.log(data)
@@ -94,26 +120,17 @@ if (localStorage.token) {
 	gallery.style.marginTop = '60px'
 }
 
-let modat = null 
-const focusableSelector = 'button, a, input textarea'
-let focusables = []
-let previouslyFocusedElement = null
+/*** Modal ****/
 
-const openModal = function (e) {
-	e.preventDefault()
-	const target = e.target.getAttribute('href')
-	if (target.startsWith())
-	modal = document.querySelector()
-	focusables = Array.from(modal.querySelectorAll(focusableSelector))
-	previouslyFocusedElement = document.querySelector(':focus')
-	modal.style.display = null
-	focusables[0].focus()
-	modal.removeAttribute('aria-hidden')
-	modal.setAttribute('aria-modal', 'true')
-	modal.addEventListener('click', closedModal)
-	modal.querySelector('.js-modal-close'). addEventListener('click','close')
-	modal.querySelector('.js-modal-stop').addEventListener('click', 'stop')
-}
+// On créé l'événement pour ouvrir la modal quand on clique sur le bouton 'Mode édition'
+editModal.addEventListener('click', (FrontEnd\images\villa-ferneze1651287511604.png) => {
+	modal.style.display = 'block'
+})
+
+// On créé l'évément pour fermer la modal
+modalBtnClose.addEventListener('click', (FrontEnd\images\appartement-paris-x1651287435459.png) => {
+	modal.style.display = 'none'
+})
 
 getWorks()
 getCategories()

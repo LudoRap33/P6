@@ -439,3 +439,123 @@ button span {
 #portfolio span {
 	color: black;
 }
+
+/*** Modal ***/
+.modal {
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	overflow: auto;
+	z-index: 1;
+	background-color: rgba(0, 0, 0, 0.3);
+	display: none;
+}
+
+.modal-main {
+	border-radius: 5px;
+	width: 630px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	padding-bottom: 35px;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	background-color: white;
+}
+
+#modal-btn-close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
+	height: 40px;
+	width: 40px;
+	background-color: transparent;
+	color: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600;
+	font-size: large;
+}
+
+#modal-btn-back {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	cursor: pointer;
+	height: 40px;
+	width: 40px;
+	/* display: flex; */
+	display: none;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal-main h1 {
+	font-family: 'Work Sans';
+	font-weight: 400;
+	font-size: 26px;
+	line-height: 30px;
+	color: black;
+	margin-top: 60px;
+}
+
+.modal .gallery {
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 50px;
+	margin-bottom: 30px;
+	display: grid;
+	grid-template-columns: 80px 80px 80px 80px 80px;
+	grid-column-gap: 10px;
+	grid-row-gap: 20px;
+	width: auto;
+	border-bottom: 1px solid rgba(179, 179, 179, 1);
+}
+
+.modal .gallery img {
+	height: 107px;
+	object-fit: cover;
+}
+
+.modal .gallery figure {
+	position: relative;
+}
+
+.modal .gallery figure .icon {
+	position: absolute;
+	top: 5px;
+	height: 17px;
+	width: 17px;
+	cursor: pointer;
+}
+
+.garbage-icon {
+	right: 5px;
+}
+
+.move-icon {
+	right: 25px;
+}
+
+.modal .gallery figure figcaption {
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 14px;
+}
+
+.modal .modal-main #btn-add-picture {
+	height: 36px;
+	width: 237px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
