@@ -123,12 +123,12 @@ if (localStorage.token) {
 /*** Modal ****/
 
 // On créé l'événement pour ouvrir la modal quand on clique sur le bouton 'Mode édition'
-editModal.addEventListener('click', (FrontEnd\images\villa-ferneze1651287511604.png) => {
+editModal.addEventListener('click', (all the pictures) => {
 	modal.style.display = 'block'
 })
 
 // On créé l'évément pour fermer la modal
-modalBtnClose.addEventListener('click', (FrontEnd\images\appartement-paris-x1651287435459.png) => {
+modalBtnClose.addEventListener('click', () => {
 	modal.style.display = 'none'
 })
 
