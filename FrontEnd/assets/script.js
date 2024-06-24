@@ -126,7 +126,15 @@ if (localStorage.token) {
 editModal.addEventListener('click', () => {
 	modal.style.display = 'block'
 
-	blocked the all pictures.
+
+	let bouton_ajout = document.querySelector("button");
+	let ajout_image = function(Frontend/images/le-coteau-cassis1651287469876.png) {
+	let img = document.createElement("img");
+	document.body.appendChild(img);
+
+}
+bouton_ajout.addEventListener('click',ajout_image);
+
 })
 
 // On créé l'évément pour fermer la modal
