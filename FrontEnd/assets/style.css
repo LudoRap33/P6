@@ -559,3 +559,76 @@ button span {
 	justify-content: center;
 	align-items: center;
 }
+
+/*** Form Add Picture ***/
+#form-add-picture {
+	display: none;
+	width: 440px;
+}
+
+#form-add-picture input[type="submit"] {
+	height: 36px;
+}
+
+hr {
+	margin-top: 50px;
+	width: 100%;
+	border: 1px solid #B3B3B3;
+}
+
+#container-picture {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	background-color: #E8F1F7;
+	border-radius: 3px;
+	height: 169px;
+}
+
+#container-picture img {
+	width: 58px;
+	height: 58px;
+	max-width: 440px;
+	max-height: 169px;
+}
+
+#container-picture label {
+	font-family: 'Work Sans';
+	font-weight: 500;
+	color: #306685;
+	font-size: 14px;
+	line-height: 16px;
+	background-color: #CBD6DC;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	width: 180px;
+	text-align: center;
+	border-radius: 50px;
+	cursor: pointer;
+	height: 36px;
+	border: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#container-picture span {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 10px;
+	line-height: 12px;
+	text-align: center;
+	color: #444444;
+}
+
+input[type="file"] {
+	display: none;
+}
+
+#form-add-picture .disabled {
+	background-color: #A7A7A7;
+	cursor: not-allowed;
+}

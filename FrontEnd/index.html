@@ -78,9 +78,33 @@
 		<div id="modal" class="modal">
 			<div class="modal-main">
 				<btn id="modal-btn-close">X</btn>
+				<btn id="modal-btn-back">
+					<img src="./assets/icons/arrow_back.png" alt="fleche retour">
+				</btn>
 				<h1>Galerie photo</h1>
 				<section class="gallery"></section>
 				<btn id="btn-add-picture">Ajouter une photo</btn>
+				<section class="form" id="form-add-picture">
+					<form enctype="multipart/form-data">
+						<div id="container-picture">
+							<img id="preview" src="./assets/icons/picture.png" alt="picture">
+							<label for="file-upload">+ Ajouter photo</label>
+							<input id="file-upload" type="file" accept="image/*">
+							<span>jpg, png: 4mo max</span>
+						</div>
+						<div id="file-error" class="input-error">Veuillez charger une image au format jpg, jpeg ou png
+							inférieure à 4 Mo</div>
+						<label for="title">Titre</label>
+						<input type="text" name="title" id="title">
+						<div id="title-error" class="input-error">Veuillez renseigner un titre valide avec au moins 2
+							caractères</div>
+						<label for="select-category">Catégorie</label>
+						<select id="select-category"></select>
+						<div id="select-error" class="input-error">Veuillez sélectionner une catégorie valide</div>
+						<hr>
+						<input type="submit" value="Valider" class="disabled">
+					</form>
+				</section>
 			</div>
 		</div>
 	</main>
