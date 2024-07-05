@@ -187,7 +187,16 @@ nav li {
 	font-size: 1.2em;
 }
 
-li:hover {
+
+nav #a-login,
+nav #a-logout {
+	text-decoration: none;
+	color: black;
+}
+
+li:hover,
+nav #a-login,
+nav #a-logout {
 	color: #B1663C;
 }
 

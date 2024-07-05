@@ -9,13 +9,20 @@ const modal = document.getElementById('modal')
 const galleryModal = document.querySelector('#modal .gallery')
 const modalBtnClose = document.getElementById('modal-btn-close')
 const btnAddPicture = document.getElementById('btn-add-picture')
-const formAddPicture = document.getElementById('form-add-picture')
 const btnArrowBack = document.getElementById('modal-btn-back')
+const formAddPicture = document.getElementById('form-add-picture')
+const aLogin = document.getElementById('a-login')
+const aLogout = document.getElementById('a-logout')
 // variables du DOM pour le formulaire d'ajout d'un travail
 const fileUpload = document.getElementById('file-upload')
 const preview = document.getElementById('preview')
 const labelFileUpload = document.querySelector('#container-picture label')
 const spanFileUpload = document.querySelector('#container-picture span')
+const selectCategory = document.getElementById('select-category')
+const inputTile = document.getElementById('title')
+const formAddWork = document.querySelector('#form-add-picture form')
+const submitFormAddPicture = document.querySelector('#form-add-picture input[type="submit"]')
+
 
 // Récupération des travaux de la bdd grâce à l'API Fetch en fonction de l'id de la categorie en paramètre
 const getWorks = id => fetch('http://localhost:5678/api/works')
@@ -36,6 +43,12 @@ const deleteWork = id => fetch(`http://localhost:5678/api/works/${id}`, {
 	method: 'DELETE',
 	headers: { Authorization: `Bearer ${localStorage.token}` }
 })
+
+const postWork = data => fetch('http://localhost:5678/api/works', {
+	method: 'POST',
+	headers: { Authorization: `Bearer ${localStorage.token}` },
+	body: data
+}).then(res => res.json())
 
 // Creation des galeries de la page d'accueil et de la modal en fonction des data en paramètre
 const createGallery = data => {
@@ -95,14 +108,17 @@ const getCategories = () => fetch('http://localhost:5678/api/categories')
 	.then(res => res.json())
 	.then(data => {
 		console.log(JSON.stringify(data, null, 2))
-		//création des catégories
+		//création des catégories 
 		createCatgories(data)
 	})
 	.catch(error => console.error(error))
 
 
-// Création des filtres par catégories en fonction des data en paramètre
+// Création des filtres par catégories en fonction des data en paramètre 
+// idem pour le select des categories du formulaire d'ajout de travail
 const createCatgories = data => {
+	selectCategory.innerHTML = ''
+
 	data.forEach(item => {
 
 		const button = document.createElement('button')
@@ -119,6 +135,12 @@ const createCatgories = data => {
 		})
 
 		filter.appendChild(button)
+
+		// ajout des option de categorie au select
+		const option = document.createElement('option')
+		option.setAttribute('value', item.id)
+		option.innerHTML = item.name
+		selectCategory.appendChild(option)
 	})
 }
 
@@ -131,6 +153,8 @@ categoryAll.addEventListener('click', () => {
 	getWorks()
 })
 
+aLogout.style.display = 'none'
+
 /*** Mode Admin ***/
 if (localStorage.token) {
 	banner.style.display = 'flex'
@@ -138,7 +162,13 @@ if (localStorage.token) {
 	filter.style.display = 'none'
 	editModal.style.display = 'flex'
 	gallery.style.marginTop = '60px'
+	aLogin.style.display = 'none'
+	aLogout.style.display = 'block'
 }
+
+aLogout.addEventListener('click', () => {
+	localStorage.clear()
+})
 
 /*** Modal ****/
 
@@ -168,35 +198,80 @@ btnArrowBack.addEventListener('click', () => {
 	btnArrowBack.style.display = 'none'
 })
 
-fileUpload.addEventListener('change', () => {
+fileUpload.addEventListener('change', () => imageIsValid())
+
+inputTile.addEventListener('input', () => {
 	const file = fileUpload.files[0]
 
-	labelFileUpload.style.display = 'none'
-	spanFileUpload.style.display = 'none'
-	preview.src = URL.createObjectURL(file)
-	preview.style.height = 'auto'
-	preview.style.width = 'auto'
+	if (file) {
+		const fileNameSplitted = file.name.split('.')
+		const extension = fileNameSplitted[fileNameSplitted.length - 1].toLowerCase()
+
+		if (file.size <= 4000000 && hasValidExtension(extension) && inputTile.value !== "") {
+			submitFormAddPicture.classList.remove('disabled')
+		} else {
+			submitFormAddPicture.classList.add('disabled')
+		}
+	} else {
+		submitFormAddPicture.classList.add('disabled')
+	}
+
 })
 
-const formData = new FormData();
-
-formData.append("username", "Sophie");
-// le numéro 123456 est converti immédiatement en chaîne "123456"
-formData.append("accountnum", 123456); 
+const hasValidExtension = (extension, validExtensions = ['jpg', 'jpeg', 'png']) => validExtensions.includes(extension.toLowerCase())
 
 
+const imageIsValid = () => {
+	const file = fileUpload.files[0]
 
-// fichier HTML choisi par l'utilisateur
+	if (file) {
+		const fileNameSplitted = file.name.split('.')
+		const extension = fileNameSplitted[fileNameSplitted.length - 1].toLowerCase()
+		if (file.size <= 4000000 && hasValidExtension(extension) && inputTile.value !== "") {
+			labelFileUpload.style.display = 'none'
+			spanFileUpload.style.display = 'none'
+			preview.src = URL.createObjectURL(file)
+			preview.style.height = 'auto'
+			preview.style.width = 'auto'
 
-formData.append("userfile", fileInputElement.files[0]);
+			submitFormAddPicture.classList.remove('disabled')
+		}
+	} else {
+		submitFormAddPicture.classList.add('disabled')
+	}
+}
 
-// objet JavaScript de type fichier
 
-const content = '<q id="a"><span id="b">hey!</span></q>';
+formAddWork.addEventListener('submit', e => {
+	// pour éviter de recharger la page
+	e.preventDefault()
 
-// le corps du nouveau fichier
+	const file = fileUpload.files[0]
 
-const blob = new Blob([content], { type: "text/xml" });
+	if (file) {
+		const fileNameSplitted = file.name.split('.')
+		const extension = fileNameSplitted[fileNameSplitted.length - 1].toLowerCase()
+		if (file.size <= 4000000 && hasValidExtension(extension) && inputTile.value !== "") {
+
+			const formData = new FormData()
+
+			formData.append('image', file)
+			formData.append('title', inputTile.value)
+			formData.append('category', parseInt(selectCategory.value))
+
+
+			// on envoie le formulaire avec les données du formData
+			postWork(formData).then(() => {
+				// on ferme la modal
+				modal.style.display = 'none'
+				// on récupère à nouveau les travaux en provenance du serveur
+				return getWorks()
+			})
+		}
+	}
+
+})
+
 
 getWorks()
 getCategories()
