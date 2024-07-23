@@ -188,6 +188,15 @@ btnAddPicture.addEventListener('click', () => {
 	btnAddPicture.style.display = 'none'
 	formAddPicture.style.display = 'block'
 	btnArrowBack.style.display = 'flex'
+
+	// on affiche la preview d'origine du formulaire
+	labelFileUpload.style.display = 'flex'
+	spanFileUpload.style.display = 'flex'
+	preview.src = "./assets/icons/picture.png"
+	preview.style.height = '58px'
+	preview.style.width = '58px'
+	fileUpload.value = ''
+	submitFormAddPicture.classList.add('disabled')
 })
 
 // Quand on clique sur la fleche retour en arrière on revient sur la modal avec la galerie des travaux
@@ -227,7 +236,7 @@ const imageIsValid = () => {
 	if (file) {
 		const fileNameSplitted = file.name.split('.')
 		const extension = fileNameSplitted[fileNameSplitted.length - 1].toLowerCase()
-		if (file.size <= 4000000 && hasValidExtension(extension) && inputTile.value !== "") {
+		if (file.size <= 4000000 && hasValidExtension(extension)) {
 			labelFileUpload.style.display = 'none'
 			spanFileUpload.style.display = 'none'
 			preview.src = URL.createObjectURL(file)
@@ -237,6 +246,12 @@ const imageIsValid = () => {
 			submitFormAddPicture.classList.remove('disabled')
 		}
 	} else {
+		labelFileUpload.style.display = 'flex'
+		spanFileUpload.style.display = 'flex'
+		preview.src = "./assets/icons/picture.png"
+		preview.style.height = '58px'
+		preview.style.width = '58px'
+		fileUpload.value = ''
 		submitFormAddPicture.classList.add('disabled')
 	}
 }
