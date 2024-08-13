@@ -172,9 +172,18 @@ aLogout.addEventListener('click', () => {
 
 /*** Modal ****/
 
+// https://techstacker.com/close-modal-click-outside-vanilla-javascript/
+const dismissModal = e => {
+	if (e.target === modalBtnClose || !e.target.closest('.modal-main')) {
+		modal.style.display = 'none'
+		document.removeEventListener('click', dismissModal, true)
+	}
+}
+
 // On créé l'événement pour ouvrir la modal quand on clique sur le bouton 'Mode édition'
 editModal.addEventListener('click', () => {
 	modal.style.display = 'block'
+	document.addEventListener('click', dismissModal, true)
 })
 
 // On créé l'évément pour fermer la modal

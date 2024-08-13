@@ -3,6 +3,8 @@ const email = document.getElementById('email')
 const password = document.getElementById('password')
 const loginError = document.getElementById('login-error')
 
+// Mot de passe et idantifiant
+
 const postLogin = (data) => fetch('http://localhost:5678/api/users/login', {
     method: 'POST',
     body: JSON.stringify(data),
@@ -14,6 +16,8 @@ const postLogin = (data) => fetch('http://localhost:5678/api/users/login', {
     return res.json()
 })
 
+
+// erreur
 
 formLogin.addEventListener('submit', e => {
     e.preventDefault()
